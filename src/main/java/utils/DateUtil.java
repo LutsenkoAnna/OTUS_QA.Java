@@ -9,14 +9,14 @@ import java.util.regex.Pattern;
 public class DateUtil {
 
   public LocalDate parseDateFromString(String date) {
-    Locale locRus = new Locale("ru", "RU");
     int day = LocalDate.MIN.getDayOfMonth();
     int year = LocalDate.now().getYear();
     String month = "";
 
     String regexDay = "\\d\\d?";
     String regexYear = "\\d\\d\\d\\d";
-    String regexMonth = "янв|фев|мар|апр|мая|июн|июл|август|сен|окт|ноя|дек";
+    //String regexMonth = "янв|фев|мар|апр|мая|июн|июл|август|сен|окт|ноя|дек";
+    String regexMonth = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
 
     Pattern patternDay = Pattern.compile(regexDay);
     Pattern patternMonth = Pattern.compile(regexMonth);
@@ -37,6 +37,6 @@ public class DateUtil {
     }
 
     String result = year + "-" + month + "-" + day;
-    return LocalDate.parse(result, DateTimeFormatter.ofPattern("uuuu-MMM-dd").withLocale(locRus));
+    return LocalDate.parse(result, DateTimeFormatter.ofPattern("uuuu-MMM-dd").withLocale(Locale.ENGLISH));
   }
 }

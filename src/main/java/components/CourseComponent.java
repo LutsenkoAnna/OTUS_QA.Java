@@ -32,25 +32,21 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
         .findFirst().get();
   }
 
-  public WebElement findLatestCourse() {
+  public WebElement findCourseByDate(String minmax) {
     return courseList
         .stream()
         .map(el -> el.findElement(By.cssSelector(courseStartDateSelector)))
         .reduce((el1, el2) -> {
           LocalDate date1 = new DateUtil().parseDateFromString(el1.getText());
           LocalDate date2 = new DateUtil().parseDateFromString(el2.getText());
-          return date1.isAfter(date2) ? el1 : el2;
-        }).get();
-  }
-
-  public WebElement findEarliestCourse() {
-    return courseList
-        .stream()
-        .map(el -> el.findElement(By.cssSelector(courseStartDateSelector)))
-        .reduce((el1, el2) -> {
-          LocalDate date1 = new DateUtil().parseDateFromString(el1.getText());
-          LocalDate date2 = new DateUtil().parseDateFromString(el2.getText());
-          return date1.isBefore(date2) ? el1 : el2;
+          switch (minmax) {
+            case "min":
+              return date1.isBefore(date2) ? el1 : el2;
+            case "max":
+              return date1.isAfter(date2) ? el1 : el2;
+            default:
+              return null;
+          }
         }).get();
   }
 
