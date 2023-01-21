@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>OTUS_HomeWork1</artifactId>
+    <artifactId>OTUS_Cucumber_HW2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -19,9 +19,10 @@
         <checkstyle.version>3.2.0</checkstyle.version>
         <spotbugs.version>4.7.3.0</spotbugs.version>
 
-        <browser>chrome</browser>
-        <webdriver.base.url>https://otus.ru</webdriver.base.url>
-        <test.project.language>RU</test.project.language>
+        <cucumber.version>5.5.0</cucumber.version>
+        <cucumber.junit>1.2.5</cucumber.junit>
+        <google.inject>5.1.0</google.inject>
+
         <webdriver.timeouts.implicitywait>2000</webdriver.timeouts.implicitywait>
     </properties>
 
@@ -59,6 +60,32 @@
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-guice</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${google.inject}</version>
+        </dependency>
+        <dependency>
+            <!-- jsoup HTML parser library @ https://jsoup.org/ -->
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.15.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -68,8 +95,6 @@
                 <version>${surefire.version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <browser>${browser}</browser>
-                        <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
                         <webdriver.timeouts.implicitywait>${webdriver.timeouts.implicitywait}</webdriver.timeouts.implicitywait>
                         <test.project.status>test</test.project.status>
                     </systemPropertyVariables>
