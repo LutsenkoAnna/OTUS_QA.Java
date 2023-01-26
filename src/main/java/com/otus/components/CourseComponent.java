@@ -7,7 +7,6 @@ import com.otus.support.GuiceScoped;
 import com.otus.utils.DateUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -34,6 +33,7 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
         .map(element -> element.findElement(By.cssSelector(courseNameSelector)))
         .filter(element -> element.getText().contains(courseName))
         .findFirst().get();
+    mouseListener.scrollIntoView(course, driver);
     course.click();
     return new CoursePage(guiceScoped);
   }
@@ -48,6 +48,7 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
           return currentDate.isAfter(courseDate);
         })
         .findFirst().get();
+    mouseListener.scrollIntoView(course, driver);
     course.click();
     return new CoursePage(guiceScoped);
   }
@@ -84,7 +85,7 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
       return href;
   }
 
-  public CoursePage clickCourseByPrice(String minmax) {
+  public CoursePage clickCourseByPrice(Boolean isMin) {
     Map<WebElement, Integer> courseWithPrice = new HashMap<WebElement, Integer>();
     for (WebElement course : courseList) {
       int coursePrice = getCoursePrice(getCourseUrl(course.getAttribute("href")));
@@ -92,14 +93,10 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
         courseWithPrice.put(course, coursePrice);
     }
     int price = 0;
-    switch (minmax) {
-      case "min":
-        price = Collections.min(courseWithPrice.values());
-        break;
-      case "max":
-        price = Collections.max(courseWithPrice.values());
-        break;
-      default:
+    if (isMin) {
+      price = Collections.min(courseWithPrice.values());
+    } else {
+      price = Collections.max(courseWithPrice.values());
     }
     int finalPrice = price;
     WebElement course = courseWithPrice
@@ -107,6 +104,7 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
         .stream()
         .filter(entry -> entry.getValue() == finalPrice)
         .findFirst().get().getKey();
+    mouseListener.scrollIntoView(course, driver);
     course.click();;
     return new CoursePage(guiceScoped);
   }

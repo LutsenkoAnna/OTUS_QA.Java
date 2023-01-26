@@ -21,11 +21,11 @@ public class CourseComponentSteps {
 
   @Если("Кликнуть на самый дешевый курс")
   public void clickCheapestCourse() {
-    courseComponent.clickCourseByPrice("min");
+    courseComponent.clickCourseByPrice(true);
   }
 
   @Если("Кликнуть на самый дорогой курс")
   public void clickExpensiveCourse() {
-    courseComponent.clickCourseByPrice("max");
+    courseComponent.clickCourseByPrice(false);
   }
 }
