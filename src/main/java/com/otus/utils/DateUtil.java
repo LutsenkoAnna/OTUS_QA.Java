@@ -35,8 +35,7 @@ public class DateUtil {
     if (matcherMonth.find()) {
       month = matcherMonth.group(0);
     }
-
-    String result = year + "-" + month + "-" + day;
+    String result = year + "-" + month + "-" + (day > 9 ? day : "0" + day);
     return LocalDate.parse(result, DateTimeFormatter.ofPattern("uuuu-MMM-dd").withLocale(locRus));
   }
 }

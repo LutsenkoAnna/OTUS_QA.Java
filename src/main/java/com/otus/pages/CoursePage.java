@@ -18,11 +18,13 @@ public class CoursePage extends AbsBasePage<CoursePage> {
   private WebElement header;
 
   public CoursePage pageHeaderShouldBeSameAs(String header) {
+    System.out.println("Заголовок курса: " + this.header.getText());
     assertTrue(this.header.getText().equals(header));
     return this;
   }
 
   public CoursePage pageShouldBeOpen() {
+    System.out.println("Заголовок курса: " + this.header.getText());
     assertTrue(this.driver.getCurrentUrl().contains("lessons"));
     return this;
   }

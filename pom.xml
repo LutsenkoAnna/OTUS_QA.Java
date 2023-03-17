@@ -12,6 +12,11 @@
         <selenium.java.version>3.141.59</selenium.java.version>
         <junit.jupiter.version>5.8.1</junit.jupiter.version>
         <webdrivermanager.version>4.2.0</webdrivermanager.version>
+        <webdriver.remote.url>http://localhost:4444/wd/hub</webdriver.remote.url>
+        <chrome.browser.version>109.0</chrome.browser.version>
+        <firefox.browser.version>104.0</firefox.browser.version>
+        <opera.browser.version>91.0</opera.browser.version>
+        <enableVNC>true</enableVNC>
 
         <assertj.version>3.23.1</assertj.version>
         <surefire.version>2.22.2</surefire.version>
@@ -94,7 +99,22 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
                 <configuration>
+                    <parallel>all</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <forkCount>2</forkCount>
+                    <reuseForks>false</reuseForks>
+                    <perCoreThreadCount>false</perCoreThreadCount>
+                    <threadCountMethods>2</threadCountMethods>
+                    <includes>
+                        <include>Runner_Test.class</include>
+                    </includes>
                     <systemPropertyVariables>
+                        <webdriver.remote.url>${webdriver.remote.url}</webdriver.remote.url>
+                        <chrome.browser.version>${chrome.browser.version}</chrome.browser.version>
+                        <firefox.browser.version>${firefox.browser.version}</firefox.browser.version>
+                        <opera.browser.version>${opera.browser.version}</opera.browser.version>
+                        <enableVNC>${enableVNC}</enableVNC>
                         <webdriver.timeouts.implicitywait>${webdriver.timeouts.implicitywait}</webdriver.timeouts.implicitywait>
                         <test.project.status>test</test.project.status>
                     </systemPropertyVariables>
