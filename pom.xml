@@ -69,6 +69,7 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
             <version>${cucumber.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -99,15 +100,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
                 <configuration>
-                    <parallel>all</parallel>
+                    <parallel>classesAndMethods</parallel>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <forkCount>2</forkCount>
-                    <reuseForks>false</reuseForks>
-                    <perCoreThreadCount>false</perCoreThreadCount>
-                    <threadCountMethods>2</threadCountMethods>
                     <includes>
-                        <include>Runner_Test.class</include>
+                        <include>**/Runner_Test.java</include>
                     </includes>
                     <systemPropertyVariables>
                         <webdriver.remote.url>${webdriver.remote.url}</webdriver.remote.url>

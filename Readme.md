@@ -24,4 +24,4 @@ D:\selenoid\ggr\ggr-ui_windows_386 -quota-dir D:\selenoid\ggr\quota
 D:\selenoid\selenoid-ui_windows_386 -status-uri http://127.0.0.1:8888 -selenoid-uri http://127.0.0.1:8888 -webdriver-uri http://127.0.0.1:4444
 
 #### Запуск тестов
-clean test -Dcucumber.filter.tags=@test
+clean test -Dcucumber.execution.parallel.enabled=true -Dcucumber.execution.parallel.config.strategy=dynamic
