@@ -56,12 +56,14 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
   private int getCoursePrice(String courseUrl) {
     try {
       Document coursePage = Jsoup.connect(courseUrl).get();
-      Elements nobrElement = coursePage.select("div.course-bottom-bar-meta__value nobr");
+      Elements nobrElement = coursePage.selectXpath("//div[contains(./p, 'Стоимость обучения')]/div/div");
+      if (nobrElement.isEmpty())
+        nobrElement = coursePage.select("div.course-bottom-bar-meta__value nobr");
       if (!nobrElement.isEmpty())
         return Integer.parseInt(
             nobrElement
                 .text()
-                .replaceAll("[^\\d.]", "")
+                .replaceAll("\\D", "")
         );
       else
         return Integer.parseInt(
@@ -69,7 +71,7 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
                 .select("div:containsOwn(₽)")
                 .last()
                 .text()
-                .replaceAll("[^\\d.]", "")
+                .replaceAll("\\D", "")
       );
     }
     catch (Exception ignored) {
