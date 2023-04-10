@@ -12,11 +12,11 @@ public class DateUtil {
     Locale locRus = new Locale("ru", "RU");
     int day = LocalDate.MIN.getDayOfMonth();
     int year = LocalDate.now().getYear();
-    String month = "";
+    String month = "дек";
 
     String regexDay = "\\d\\d?";
     String regexYear = "\\d\\d\\d\\d";
-    String regexMonth = "янв|фев|мар|апр|мая|июн|июл|август|сен|окт|ноя|дек";
+    String regexMonth = "янв|фев|мар|апр|мая|июн|июл|авг|сен|окт|ноя|дек";
 
     Pattern patternDay = Pattern.compile(regexDay);
     Pattern patternMonth = Pattern.compile(regexMonth);
@@ -36,7 +36,7 @@ public class DateUtil {
       month = matcherMonth.group(0);
     }
 
-    String result = year + "-" + month + "-" + day;
+    String result = year + "-" + month + "-" + (day > 9 ? day : "0" + day);
     return LocalDate.parse(result, DateTimeFormatter.ofPattern("uuuu-MMM-dd").withLocale(locRus));
   }
 }
