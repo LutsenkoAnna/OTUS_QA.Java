@@ -3,6 +3,7 @@ package order;
 import static data.OrderData.*;
 
 import dto.store.OrderOutDTO;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,16 +15,19 @@ public class OrderPositive_Test {
   public StoreApi storeApi = new StoreApi();
 
   @BeforeEach
+  @Step("Создание тестового заказа")
   public void createOrder() {
     storeApi.createOrder(storeApi.generateOrderDTO());
   }
 
-  @AfterEach void deleteOrder() {
+  @AfterEach
+  @Step("Удаление тестового заказа")
+  public void deleteOrder() {
     storeApi.deleteOrder();
   }
 
   @Test
-  //Создание заказа с заполнением всех полей. Ожидается код 200 и возврат заполненных полей
+  @Step("Создание заказа с заполнением всех полей. Ожидается код 200 и возврат заполненных полей")
   public void createFullOrder() {
     OrderOutDTO orderOut = storeApi
         .validateResponse(storeApi.getOrder())

@@ -3,6 +3,7 @@ package pet;
 import static data.PetData.*;
 
 import dto.pet.PetOutDTO;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import services.PetApi;
@@ -11,7 +12,7 @@ import services.PetApi;
 public class PetPositive_Test {
 
   @Test
-  //Создание информации о питомце с заполнением всех полей. Ожидается код 200 и возврат заполненных полей
+  @Step("Создание информации о питомце с заполнением всех полей. Ожидается код 200 и возврат заполненных полей")
   public void createPet() {
     PetApi petApi = new PetApi();
     petApi.createPet(petApi.generateFullPetDTO());
@@ -34,7 +35,7 @@ public class PetPositive_Test {
   }
 
   @Test
-  //Создание информации о питомце c заполнением только имени и id. Ожидается код 200 и возврат заполненных полей
+  @Step("Создание информации о питомце c заполнением только имени и id. Ожидается код 200 и возврат заполненных полей")
   public void createPetWithOnlyName() {
     PetApi petApi = new PetApi();
     petApi.createPet(petApi.generatePetDTO());

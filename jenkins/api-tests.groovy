@@ -6,5 +6,14 @@ timeout(60) {
         stage('Running API autotest') {
             sh "mvn test"
         }
+        stage('Publisher allure report') {
+            allure([
+                    includeProperties: false,
+                    jdk              : '',
+                    properties       : [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results          : [[path: 'allure-results']]
+            ])
+        }
     }
 }
