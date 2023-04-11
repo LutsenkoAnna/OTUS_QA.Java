@@ -9,10 +9,9 @@ import java.util.regex.Pattern;
 public class DateUtil {
 
   public LocalDate parseDateFromString(String date) {
-    Locale locRus = new Locale("ru", "RU");
     int day = LocalDate.MIN.getDayOfMonth();
     int year = LocalDate.now().getYear();
-    String month = "янв";
+    String month = Month.ЯНВ.getNum();
 
     String regexDay = "\\d\\d?";
     String regexYear = "\\d\\d\\d\\d";
@@ -33,10 +32,10 @@ public class DateUtil {
       year = Integer.parseInt(matcherYear.group(0));
     }
     if (matcherMonth.find()) {
-      month = matcherMonth.group(0);
+      month = Month.valueOf(matcherMonth.group(0).toUpperCase(Locale.ROOT)).getNum();
     }
 
     String result = year + "-" + month + "-" + (day > 9 ? day : "0" + day);
-    return LocalDate.parse(result, DateTimeFormatter.ofPattern("uuuu-MMM-dd").withLocale(locRus));
+    return LocalDate.parse(result, DateTimeFormatter.ofPattern("uuuu-MM-dd"));
   }
 }
