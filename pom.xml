@@ -24,7 +24,7 @@
         <test.project.language>RU</test.project.language>
         <webdriver.timeouts.implicitywait>2000</webdriver.timeouts.implicitywait>
 
-        <webdriver.remote.url>http://localhost:4444/wd/hub</webdriver.remote.url>
+        <webdriver.remote.url>http://127.0.0.1:4444/wd/hub</webdriver.remote.url>
         <chrome.browser.version>109.0</chrome.browser.version>
         <firefox.browser.version>104.0</firefox.browser.version>
         <opera.browser.version>91.0</opera.browser.version>
