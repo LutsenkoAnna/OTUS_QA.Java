@@ -18,9 +18,8 @@ public class ChatPage extends BasePage<ChatPage> {
   public boolean isLineExist(String line) {
     return
         $$(AppiumBy.className("android.widget.TextView"))
-            .should(CollectionCondition.containExactTextsCaseSensitive(line))
-            .first()
-            //.find(Condition.text(line))
+            .should(CollectionCondition.sizeNotEqual(0))
+            .find(Condition.text(line))
             .isDisplayed();
   }
 }

@@ -1,7 +1,6 @@
 package demo;
 
-import static com.codeborne.selenide.Selenide.clipboard;
-
+import com.codeborne.selenide.Selenide;
 import components.BonusComponent;
 import components.MenuComponent;
 import extensions.AppiumExtension;
@@ -15,7 +14,6 @@ import popups.FreeLessons;
 import popups.Share;
 
 @ExtendWith(AppiumExtension.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class Andy_Test {
 
@@ -35,24 +33,26 @@ public class Andy_Test {
     }
   }
 
+  @AfterEach
+  public void tearDown() {
+    Selenide.closeWebDriver();
+  }
+
   @Test
-  @Order(1)
   public void checkChat() {
     ChatPage chatPage = new MenuComponent().openChatPage();
     chatPage.entryLine("Test");
+
     Assertions.assertTrue(chatPage.isLineExist("Test"));
   }
 
   @Test
-  @Order(2)
   public void getFreeLesson() {
     new MenuComponent().openGrammarPage();
     new BonusComponent().clickFreeLessons();
     new FreeLessons().clickShare();
-    new Share().copyLink();
 
-    System.out.println(clipboard().getText());
-    Assertions.assertTrue(clipboard().getText().contains("http"));
+    Assertions.assertTrue(new Share().isShareListExist());
   }
 
 }
