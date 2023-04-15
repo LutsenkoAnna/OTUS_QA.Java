@@ -4,10 +4,7 @@ import static data.OrderData.*;
 
 import dto.store.OrderOutDTO;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import services.StoreApi;
 
 
@@ -27,6 +24,7 @@ public class OrderPositive_Test {
   }
 
   @Test
+  @DisplayName("Create order")
   @Step("Создание заказа с заполнением всех полей. Ожидается код 200 и возврат заполненных полей")
   public void createFullOrder() {
     OrderOutDTO orderOut = storeApi
