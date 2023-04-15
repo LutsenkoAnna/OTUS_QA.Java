@@ -16,7 +16,7 @@ public class ChromeWebDriver implements IWebDriver {
     options.addArguments("--kiosk");
     options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
     options.setCapability(CapabilityType.BROWSER_NAME, "chrome");
-    options.setCapability(CapabilityType.BROWSER_VERSION, System.getProperty("chrome.browser.version"));
+    options.setCapability(CapabilityType.BROWSER_VERSION, System.getProperty("browser.version"));
     options.setCapability("enableVNC", Boolean.parseBoolean(System.getProperty("enableVNC")));
 
     WebDriverManager.chromedriver().setup();

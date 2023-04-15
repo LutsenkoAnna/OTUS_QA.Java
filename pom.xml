@@ -29,9 +29,7 @@
         <webdriver.timeouts.implicitywait>2000</webdriver.timeouts.implicitywait>
 
         <webdriver.remote.url>http://127.0.0.1:4444/wd/hub</webdriver.remote.url>
-        <chrome.browser.version>109.0</chrome.browser.version>
-        <firefox.browser.version>104.0</firefox.browser.version>
-        <opera.browser.version>91.0</opera.browser.version>
+        <browser.version>109.0</browser.version>
         <enableVNC>true</enableVNC>
     </properties>
 
@@ -108,9 +106,7 @@
                     </argLine>
                     <systemPropertyVariables>
                         <webdriver.remote.url>${webdriver.remote.url}</webdriver.remote.url>
-                        <chrome.browser.version>${chrome.browser.version}</chrome.browser.version>
-                        <firefox.browser.version>${firefox.browser.version}</firefox.browser.version>
-                        <opera.browser.version>${opera.browser.version}</opera.browser.version>
+                        <browser.version>${browser.version}</browser.version>
                         <enableVNC>${enableVNC}</enableVNC>
                         <browser>${browser}</browser>
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>

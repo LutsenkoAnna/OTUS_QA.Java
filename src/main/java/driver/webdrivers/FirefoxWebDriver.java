@@ -14,7 +14,7 @@ public class FirefoxWebDriver implements IWebDriver {
     FirefoxOptions options = new FirefoxOptions();
     options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
     options.setCapability(CapabilityType.BROWSER_NAME, "firefox");
-    options.setCapability(CapabilityType.BROWSER_VERSION, System.getProperty("firefox.browser.version"));
+    options.setCapability(CapabilityType.BROWSER_VERSION, System.getProperty("browser.version"));
     options.setCapability("enableVNC", Boolean.parseBoolean(System.getProperty("enableVNC")));
     WebDriverManager.firefoxdriver().setup();
 
