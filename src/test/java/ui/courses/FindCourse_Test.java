@@ -3,6 +3,8 @@ package ui.courses;
 import components.CourseComponent;
 import data.CourseData;
 import extensions.UIExtension;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +15,8 @@ import pages.MainPage;
 public class FindCourse_Test {
 
   @Test
+  @DisplayName("Find course by name")
+  @Step("Ищем курс по названию")
   public void findCourseByName_Test(WebDriver driver) {
     new MainPage(driver).open();
     CourseComponent courseComponent = new CourseComponent(driver);
@@ -25,6 +29,8 @@ public class FindCourse_Test {
   }
 
   @Test
+  @DisplayName("Find latest course")
+  @Step("Ищем курс, который стартует позже всех")
   public void findLatestCourse_Test(WebDriver driver) {
     new MainPage(driver).open();
     CourseComponent courseComponent = new CourseComponent(driver);
@@ -37,6 +43,8 @@ public class FindCourse_Test {
   }
 
   @Test
+  @DisplayName("Find earliest course")
+  @Step("Ищем курс, который стартует раньше всех")
   public void findEarliestCourse_Test(WebDriver driver) {
     new MainPage(driver).open();
     CourseComponent courseComponent = new CourseComponent(driver);

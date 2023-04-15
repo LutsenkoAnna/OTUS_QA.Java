@@ -4,6 +4,7 @@ import driver.webdrivers.ChromeWebDriver;
 import driver.webdrivers.FirefoxWebDriver;
 import driver.webdrivers.OperaWebDriver;
 import exceptions.DriverNotFoundException;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import java.util.Locale;
 
@@ -11,6 +12,7 @@ public class DriverFactory {
 
   private final String browser = System.getProperty("browser", "chrome").toLowerCase(Locale.ROOT);
 
+  @Step("Создаем драйвер")
   public EventFiringWebDriver createInstance() {
     switch (browser) {
       case "chrome": {

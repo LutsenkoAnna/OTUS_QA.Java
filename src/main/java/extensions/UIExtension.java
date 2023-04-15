@@ -1,14 +1,27 @@
 package extensions;
 
 import driver.DriverFactory;
+import io.qameta.allure.Allure;
 import listeners.MouseListener;
 import org.junit.jupiter.api.extension.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import java.io.ByteArrayInputStream;
 
-public class UIExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver {
+public class UIExtension implements BeforeEachCallback, AfterEachCallback, AfterTestExecutionCallback, ParameterResolver {
 
   protected EventFiringWebDriver driver;
+
+  @Override
+  public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
+    boolean testResult = extensionContext.getExecutionException().isPresent();
+    if(testResult) {
+      Allure.addAttachment("Failed screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+    }
+  }
+
   @Override
   public void afterEach(ExtensionContext extensionContext) throws Exception {
     if (driver != null) {

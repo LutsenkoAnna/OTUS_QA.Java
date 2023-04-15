@@ -1,6 +1,7 @@
 package pages;
 
 import annotations.Path;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import utils.CustomWaiter;
@@ -27,6 +28,7 @@ public abstract class AbsBasePage<T> {
     return null;
   }
 
+  @Step("Открываем страницу")
   public T open() {
     driver.get(baseUrl + getPath());
     return (T) this;

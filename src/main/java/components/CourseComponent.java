@@ -2,6 +2,7 @@ package components;
 
 import actions.BaseAction;
 import annotations.Component;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,7 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
         .findFirst().get();
   }
 
+  @Step("Проверяем даты курсов")
   public WebElement findCourseByDate(String minmax) {
     return courseList
         .stream()
@@ -50,6 +52,7 @@ public class CourseComponent extends AbsBaseComponent<CourseComponent> {
         }).get();
   }
 
+  @Step("Кликаем на курс")
   public CoursePage clickOnCourse(WebElement element) {
     BaseAction.clickElementAction(element, driver);
     return new CoursePage(driver);

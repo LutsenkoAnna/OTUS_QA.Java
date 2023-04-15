@@ -19,6 +19,10 @@
         <checkstyle.version>3.2.0</checkstyle.version>
         <spotbugs.version>4.7.3.0</spotbugs.version>
 
+        <allure-maven.version>2.10.0</allure-maven.version>
+        <allure-junit5.version>2.14.0</allure-junit5.version>
+        <aspectj.version>1.8.13</aspectj.version>
+
         <browser>chrome</browser>
         <webdriver.base.url>https://otus.ru</webdriver.base.url>
         <test.project.language>RU</test.project.language>
@@ -29,7 +33,6 @@
         <firefox.browser.version>104.0</firefox.browser.version>
         <opera.browser.version>91.0</opera.browser.version>
         <enableVNC>true</enableVNC>
-
     </properties>
 
     <dependencies>
@@ -66,6 +69,16 @@
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>${allure-maven.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure-junit5.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -74,6 +87,25 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
                 <configuration>
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${project.basedir}/allure-results</value>
+                        </property>
+                        <property>
+                            <name>junit.jupiter.extensions.autodetection.enabled</name>
+                            <value>true</value>
+                        </property>
+                    </systemProperties>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.junit5.AllureJunit5</value>
+                        </property>
+                    </properties>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                     <systemPropertyVariables>
                         <webdriver.remote.url>${webdriver.remote.url}</webdriver.remote.url>
                         <chrome.browser.version>${chrome.browser.version}</chrome.browser.version>

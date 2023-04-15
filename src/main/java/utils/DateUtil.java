@@ -1,5 +1,6 @@
 package utils;
 
+import io.qameta.allure.Step;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -8,6 +9,7 @@ import java.util.regex.Pattern;
 
 public class DateUtil {
 
+  @Step("Преобразовываем дату в нужный формат")
   public LocalDate parseDateFromString(String date) {
     Locale locRus = new Locale("ru", "RU");
     int day = LocalDate.MIN.getDayOfMonth();
