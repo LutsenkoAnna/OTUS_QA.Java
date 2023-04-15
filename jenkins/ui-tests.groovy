@@ -14,5 +14,14 @@ timeout(60) {
                 currentBuild.result = 'UNSTABLE'
             }
         }
+        stage('Publisher allure report') {
+            allure([
+                    includeProperties: false,
+                    jdk              : '',
+                    properties       : [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results          : [[path: 'allure-results']]
+            ])
+        }
     }
 }
