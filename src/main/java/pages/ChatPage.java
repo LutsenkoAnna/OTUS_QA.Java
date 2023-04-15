@@ -6,15 +6,18 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import io.appium.java_client.AppiumBy;
+import io.qameta.allure.Step;
 
 public class ChatPage extends BasePage<ChatPage> {
 
+  @Step("Ввели {line} в чате")
   public ChatPage entryLine(String line) {
     $(AppiumBy.className("android.widget.EditText")).sendKeys(line);
     $(AppiumBy.xpath("//android.view.View[@content-desc=\"send\"]")).click();
     return this;
   }
 
+  @Step("Проверить, что {line} присутствует в чате")
   public boolean isLineExist(String line) {
     return
         $$(AppiumBy.className("android.widget.TextView"))

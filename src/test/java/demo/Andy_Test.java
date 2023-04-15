@@ -4,6 +4,7 @@ import com.codeborne.selenide.Selenide;
 import components.BonusComponent;
 import components.MenuComponent;
 import extensions.AppiumExtension;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.ChatPage;
@@ -18,6 +19,8 @@ import popups.Share;
 public class Andy_Test {
 
   @BeforeEach
+  @DisplayName("Skip entry before each test")
+  @Step("Пропустить начало при первом входе")
   public void skipEntry() {
     new MainPage().open();
     StartPage startPage = new StartPage();
@@ -34,11 +37,13 @@ public class Andy_Test {
   }
 
   @AfterEach
+  @Step("Закрыть приложение")
   public void tearDown() {
     Selenide.closeWebDriver();
   }
 
   @Test
+  @Step("Проверка работы чата")
   public void checkChat() {
     ChatPage chatPage = new MenuComponent().openChatPage();
     chatPage.entryLine("Test");
@@ -47,6 +52,7 @@ public class Andy_Test {
   }
 
   @Test
+  @Step("Проверить, что есть вохможность поделиться приложением")
   public void getFreeLesson() {
     new MenuComponent().openGrammarPage();
     new BonusComponent().clickFreeLessons();

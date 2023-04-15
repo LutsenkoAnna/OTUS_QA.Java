@@ -1,7 +1,6 @@
 package extensions;
 
 import com.codeborne.selenide.Configuration;
-import com.sun.javafx.runtime.SystemProperties;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import providers.SelenideWebDriver;
